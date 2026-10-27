@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Claude Eat Well</title>
+  <title>刷餐小幫手 - Meal Budget Helper</title>
   
   <!-- PWA & Mobile Meta Tags -->
   <meta name="theme-color" content="#0f1115">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Eat Well">
+  <meta name="apple-mobile-web-app-title" content="刷餐小幫手">
 
-  <!-- Embedded SVG Icon & Apple Touch Icon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231f7ae0'/%3E%3Ctext x='256' y='335' fill='%23ffffff' font-size='270' font-weight='bold' font-family='PingFang TC,Microsoft JhengHei,Noto Sans TC,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231f7ae0'/%3E%3Ctext x='256' y='335' fill='%23ffffff' font-size='270' font-weight='bold' font-family='PingFang TC,Microsoft JhengHei,Noto Sans TC,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/svg%3E">
+  <!-- Embedded Modern SVG App Icon & Apple Touch Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%232563eb'/%3E%3Cstop offset='100%25' stop-color='%231e40af'/%3E%3C/linearGradient%3E%3ClinearGradient id='glow' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cfilter id='sh' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeDropShadow dx='0' dy='10' stdDeviation='14' flood-color='%23000000' flood-opacity='0.28'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='120' fill='url(%23bg)'/%3E%3Crect width='512' height='512' rx='120' fill='url(%23glow)'/%3E%3Cg filter='url(%23sh)'%3E%3Ccircle cx='256' cy='236' r='146' fill='none' stroke='%23ffffff' stroke-width='16' stroke-opacity='0.9'/%3E%3Ccircle cx='256' cy='236' r='120' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ctext x='256' y='312' fill='%23ffffff' font-size='200' font-weight='900' font-family='-apple-system,BlinkMacSystemFont,PingFang TC,Microsoft JhengHei,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/g%3E%3Cg transform='translate(332, 332)' filter='url(%23sh)'%3E%3Ccircle cx='40' cy='40' r='38' fill='%2310b981' stroke='%23ffffff' stroke-width='7'/%3E%3Ctext x='40' y='55' fill='%23ffffff' font-size='44' font-weight='900' font-family='-apple-system,sans-serif' text-anchor='middle'%3E$%3C/text%3E%3C/g%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%232563eb'/%3E%3Cstop offset='100%25' stop-color='%231e40af'/%3E%3C/linearGradient%3E%3ClinearGradient id='glow' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='0.3'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cfilter id='sh' x='-10%25' y='-10%25' width='120%25' height='120%25'%3E%3CfeDropShadow dx='0' dy='10' stdDeviation='14' flood-color='%23000000' flood-opacity='0.28'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='120' fill='url(%23bg)'/%3E%3Crect width='512' height='512' rx='120' fill='url(%23glow)'/%3E%3Cg filter='url(%23sh)'%3E%3Ccircle cx='256' cy='236' r='146' fill='none' stroke='%23ffffff' stroke-width='16' stroke-opacity='0.9'/%3E%3Ccircle cx='256' cy='236' r='120' fill='%23ffffff' fill-opacity='0.12'/%3E%3Ctext x='256' y='312' fill='%23ffffff' font-size='200' font-weight='900' font-family='-apple-system,BlinkMacSystemFont,PingFang TC,Microsoft JhengHei,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/g%3E%3Cg transform='translate(332, 332)' filter='url(%23sh)'%3E%3Ccircle cx='40' cy='40' r='38' fill='%2310b981' stroke='%23ffffff' stroke-width='7'/%3E%3Ctext x='40' y='55' fill='%23ffffff' font-size='44' font-weight='900' font-family='-apple-system,sans-serif' text-anchor='middle'%3E$%3C/text%3E%3C/g%3E%3C/svg%3E">
 
   <!-- Embedded PWA Manifest -->
-  <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Claude%20Eat%20Well%22%2C%22short_name%22%3A%22Eat%20Well%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%230f1115%22%2C%22background_color%22%3A%22%230f1115%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27112%27%20fill%3D%27%25231f7ae0%27%2F%253E%253Ctext%20x%3D%27256%27%20y%3D%27335%27%20fill%3D%27%2523ffffff%27%20font-size%3D%27270%27%20font-weight%3D%27bold%27%20font-family%3D%27PingFang%20TC%2CMicrosoft%20JhengHei%2CNoto%20Sans%20TC%2Csans-serif%27%20text-anchor%3D%27middle%27%253E%25E9%25A4%2590%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+  <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22%E5%88%B7%E9%A4%90%E5%B0%8F%E5%B9%AB%E6%89%8B%22%2C%22short_name%22%3A%22%E5%88%B7%E9%A4%90%E5%B0%8F%E5%B9%AB%E6%89%8B%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%230f1115%22%2C%22background_color%22%3A%22%230f1115%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bg%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%27100%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%252338bdf8%27%2F%253E%253Cstop%20offset%3D%2750%25%27%20stop-color%3D%27%25232563eb%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%25231e40af%27%2F%253E%253C%2FlinearGradient%253E%253ClinearGradient%20id%3D%27glow%27%20x1%3D%270%25%27%20y1%3D%270%25%27%20x2%3D%270%25%27%20y2%3D%27100%25%27%253E%253Cstop%20offset%3D%270%25%27%20stop-color%3D%27%2523ffffff%27%20stop-opacity%3D%270.3%27%2F%253E%253Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%2523ffffff%27%20stop-opacity%3D%270%27%2F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27url%28%2523bg%29%27%2F%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27120%27%20fill%3D%27url%28%2523glow%29%27%2F%253E%253Ccircle%20cx%3D%27256%27%20cy%3D%27236%27%20r%3D%27146%27%20fill%3D%27none%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%2716%27%20stroke-opacity%3D%270.9%27%2F%253E%253Ccircle%20cx%3D%27256%27%20cy%3D%27236%27%20r%3D%27120%27%20fill%3D%27%2523ffffff%27%20fill-opacity%3D%270.12%27%2F%253E%253Ctext%20x%3D%27256%27%20y%3D%27312%27%20fill%3D%27%2523ffffff%27%20font-size%3D%27200%27%20font-weight%3D%27900%27%20font-family%3D%27-apple-system%2CBlinkMacSystemFont%2CPingFang%20TC%2CMicrosoft%20JhengHei%2Csans-serif%27%20text-anchor%3D%27middle%27%253E%25E9%25A4%2590%253C%2Ftext%253E%253Ccircle%20cx%3D%27372%27%20cy%3D%27372%27%20r%3D%2738%27%20fill%3D%27%252310b981%27%20stroke%3D%27%2523ffffff%27%20stroke-width%3D%277%27%2F%253E%253Ctext%20x%3D%27372%27%20y%3D%27387%27%20fill%3D%27%2523ffffff%27%20font-size%3D%2744%27%20font-weight%3D%27900%27%20font-family%3D%27-apple-system%2Csans-serif%27%20text-anchor%3D%27middle%27%253E%24%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
 
   <style>
     :root {
-      --bg: #f5f7fa;
+      --bg: #f6f8fb;
       --card-bg: #ffffff;
-      --card-sub: #f0f3f8;
+      --card-sub: #f1f4f9;
       --border: #e2e8f0;
       --text: #0f172a;
       --text-muted: #64748b;
@@ -34,15 +34,16 @@
       --badge-bg: #fee2e2;
       --badge-text: #dc2626;
       --progress-bg: #e2e8f0;
-      --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      --overlay: rgba(15, 23, 42, 0.55);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f1115;
-        --card-bg: #181b21;
-        --card-sub: #21252d;
-        --border: #2a2e38;
+        --bg: #0c0f14;
+        --card-bg: #161a22;
+        --card-sub: #1f2530;
+        --border: #28303e;
         --text: #f1f5f9;
         --text-muted: #94a3b8;
         --primary: #3b82f6;
@@ -51,8 +52,9 @@
         --red: #f87171;
         --badge-bg: #451a1a;
         --badge-text: #fca5a5;
-        --progress-bg: #2a2e38;
-        --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        --progress-bg: #28303e;
+        --shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+        --overlay: rgba(0, 0, 0, 0.72);
       }
     }
 
@@ -77,10 +79,10 @@
     .app-container {
       width: 100%;
       max-width: 480px;
-      padding: 16px 16px 36px 16px;
+      padding: 14px 14px 36px 14px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .tabular {
@@ -92,41 +94,181 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 0 8px 0;
+      padding: 2px 0 4px 0;
     }
 
     .brand-title {
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
       gap: 8px;
+      min-width: 0;
     }
 
-    .brand-icon {
-      width: 28px;
-      height: 28px;
-      background-color: var(--primary);
-      border-radius: 7px;
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 15px;
-      font-weight: bold;
+      font-size: 17px;
+      font-weight: 900;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+      flex-shrink: 0;
     }
 
-    .btn-lang {
+    .brand-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.94);
+      background: var(--card-sub);
+    }
+
+    .btn-lang {
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
-      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-lang:active {
+      background: var(--card-sub);
+    }
+
+    /* Warning Banner for Unset Worker ID */
+    .banner-warning {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #92400e;
+      border: 1px solid #fcd34d;
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .banner-warning {
+        background: linear-gradient(135deg, #451a03, #78350f);
+        color: #fef3c7;
+        border-color: #92400e;
+      }
+    }
+
+    .banner-warning button {
+      background: #d97706;
+      color: #ffffff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Date controls (At Top) */
+    .date-section {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .btn-today {
+      flex: 0 0 auto;
+      height: 42px;
+      padding: 0 10px;
+      border-radius: 12px;
+      font-size: clamp(0.75rem, 2.7vw, 0.88rem);
+      font-weight: 600;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-nav-day {
+      flex: 0 0 38px;
+      height: 42px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .date-input-wrapper {
+      flex: 1 1 auto;
+      min-width: 0;
+      width: 0;
+      position: relative;
+    }
+
+    .date-picker {
+      width: 100%;
+      height: 42px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+      font-weight: 600;
+      text-align: center;
+      padding: 0 4px;
+      font-family: inherit;
+      outline: none;
     }
 
     /* Cards */
@@ -134,28 +276,55 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 18px;
+      padding: 16px;
       box-shadow: var(--shadow);
     }
 
-    /* Main Budget Card */
+    /* Main Remaining Budget Card */
     .hero-card {
+      position: relative;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+    }
+
+    .hero-card-refresh {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .hero-card-refresh:active {
+      transform: scale(0.9);
+    }
+
+    .hero-card-refresh.spinning svg {
+      animation: spin 0.8s linear infinite;
     }
 
     .hero-label {
       font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 500;
+      padding-top: 4px;
     }
 
     .hero-amount {
-      font-size: 2.8rem;
+      font-size: clamp(2.5rem, 9vw, 3.1rem);
       font-weight: 800;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.03em;
     }
 
@@ -168,41 +337,41 @@
     }
 
     .discount-calc-line {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--text);
       background: var(--card-sub);
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: 12px;
       word-break: break-word;
     }
 
     .discount-calc-line b {
       color: var(--primary);
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     .sub-cards-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .sub-card {
       background: var(--card-sub);
-      padding: 12px;
+      padding: 10px 12px;
       border-radius: 14px;
       text-align: center;
     }
 
     .sub-card-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       margin-bottom: 2px;
     }
 
     .sub-card-val {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 700;
     }
 
@@ -225,162 +394,6 @@
 
     .progress-bar-fill.exceeded {
       background: var(--red);
-    }
-
-    /* Date controls */
-    .date-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .date-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .date-row button {
-      flex: 0 0 46px;
-      height: 44px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      font-size: 1.1rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .date-input-wrapper {
-      flex: 1;
-      position: relative;
-    }
-
-    .date-picker {
-      width: 100%;
-      height: 44px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: center;
-      padding: 0 10px;
-      font-family: inherit;
-    }
-
-    .action-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .btn {
-      height: 44px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      color: var(--text);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: opacity 0.2s, background-color 0.2s;
-    }
-
-    .btn:active {
-      opacity: 0.7;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: #ffffff;
-    }
-
-    /* Collapsible Settings */
-    details.settings-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    details.settings-box summary {
-      padding: 14px 16px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      color: var(--text);
-      user-select: none;
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    details.settings-box summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details.settings-box summary::after {
-      content: "▾";
-      font-size: 1rem;
-      color: var(--text-muted);
-      transition: transform 0.2s ease;
-    }
-
-    details[open].settings-box summary::after {
-      transform: rotate(180deg);
-    }
-
-    .settings-content {
-      padding: 0 16px 16px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .form-group label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .form-group input {
-      height: 42px;
-      background: var(--card-sub);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-size: 1rem;
-      padding: 0 12px;
-      font-family: inherit;
-    }
-
-    .save-feedback {
-      text-align: center;
-      color: var(--green);
-      font-size: 0.88rem;
-      font-weight: 600;
-      height: 20px;
     }
 
     /* Detail Records */
@@ -412,9 +425,9 @@
       align-items: center;
       justify-content: space-between;
       background: var(--card-sub);
-      padding: 12px 14px;
+      padding: 11px 13px;
       border-radius: 12px;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     .record-left {
@@ -438,7 +451,7 @@
     }
 
     .record-tag {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       padding: 1px 5px;
       border-radius: 6px;
       background: var(--badge-bg);
@@ -464,7 +477,7 @@
     /* States */
     .state-box {
       text-align: center;
-      padding: 32px 16px;
+      padding: 30px 16px;
       color: var(--text-muted);
       font-size: 0.95rem;
     }
@@ -486,6 +499,229 @@
     .error-text {
       color: var(--red);
     }
+
+    /* Modals (Settings & Share) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-sheet {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+      padding: 20px;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.open .modal-sheet {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .modal-close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--card-sub);
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-group input {
+      height: 44px;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1rem;
+      padding: 0 12px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-modal-action {
+      height: 44px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      font-weight: 600;
+      border: none;
+      background: var(--primary);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn-modal-action:active {
+      opacity: 0.85;
+    }
+
+    .save-feedback {
+      text-align: center;
+      color: var(--green);
+      font-size: 0.88rem;
+      font-weight: 600;
+      min-height: 20px;
+    }
+
+    /* Share Options in Share Modal */
+    .share-link-box {
+      display: flex;
+      align-items: center;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6px 6px 6px 12px;
+      gap: 6px;
+    }
+
+    .share-url-text {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: all;
+    }
+
+    .btn-copy {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .share-buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-share-item {
+      height: 44px;
+      border-radius: 12px;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-share-item.line {
+      background: #06c755;
+      color: #ffffff;
+      border: none;
+    }
+
+    .share-tip {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      background: var(--card-sub);
+      padding: 10px 12px;
+      border-radius: 10px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(50px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 10000;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
   </style>
 </head>
 <body>
@@ -493,14 +729,53 @@
     <!-- Header -->
     <header>
       <div class="brand-title">
-        <div class="brand-icon">餐</div>
-        <span>Claude Eat Well</span>
+        <div class="brand-logo">餐</div>
+        <span class="brand-text" id="brandTitle">刷餐小幫手</span>
       </div>
-      <button class="btn-lang" id="langBtn" type="button">中 / EN</button>
+      <div class="header-actions">
+        <button class="btn-lang" id="langBtn" type="button">中 / EN</button>
+        <button class="icon-btn" id="shareBtn" type="button" aria-label="Share" title="分享">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+            <polyline points="16 6 12 2 8 6"></polyline>
+            <line x1="12" y1="2" x2="12" y2="15"></line>
+          </svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" type="button" aria-label="Settings" title="設定">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
     </header>
+
+    <!-- Unconfigured Notice Banner -->
+    <div class="banner-warning" id="unconfiguredBanner" style="display: none;">
+      <span id="txtBannerNotice">💡 尚未設定工號，請先設定您的員工工號</span>
+      <button type="button" id="btnBannerSet">前往設定</button>
+    </div>
+
+    <!-- Date Section (Moved to the Top) -->
+    <div class="date-section">
+      <button type="button" class="btn-today" id="btnToday">
+        <span id="txtBtnToday">回到今天</span>
+      </button>
+      <button type="button" class="btn-nav-day" id="btnPrevDay" aria-label="Previous day">‹</button>
+      <div class="date-input-wrapper">
+        <input type="date" id="dateInput" class="date-picker tabular">
+      </div>
+      <button type="button" class="btn-nav-day" id="btnNextDay" aria-label="Next day">›</button>
+    </div>
 
     <!-- Main Remaining Budget Card -->
     <div class="card hero-card">
+      <button type="button" class="hero-card-refresh" id="btnRefresh" aria-label="Refresh" title="重新整理">
+        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+      </button>
+
       <div class="hero-label" id="lblRemaining">剩餘預算</div>
       <div class="hero-amount tabular positive" id="valRemaining">0</div>
       <div class="discount-calc-line" id="valDiscountLine">--</div>
@@ -521,42 +796,6 @@
       </div>
     </div>
 
-    <!-- Date Control -->
-    <div class="date-section">
-      <div class="date-row">
-        <button type="button" id="btnPrevDay" aria-label="Previous day">‹</button>
-        <div class="date-input-wrapper">
-          <input type="date" id="dateInput" class="date-picker tabular">
-        </div>
-        <button type="button" id="btnNextDay" aria-label="Next day">›</button>
-      </div>
-      <div class="action-row">
-        <button type="button" class="btn" id="btnToday">回到今天</button>
-        <button type="button" class="btn" id="btnRefresh">重新整理</button>
-      </div>
-    </div>
-
-    <!-- Collapsible Settings -->
-    <details class="settings-box" id="settingsDetails">
-      <summary id="summarySettings">設定（工號/預算/折扣）</summary>
-      <div class="settings-content">
-        <div class="form-group">
-          <label for="cfgEmployeeSn" id="lblEmpSn">工號</label>
-          <input type="text" id="cfgEmployeeSn" class="tabular" inputmode="numeric">
-        </div>
-        <div class="form-group">
-          <label for="cfgBudget" id="lblDailyBudget">每日預算</label>
-          <input type="number" id="cfgBudget" class="tabular" step="1" min="0">
-        </div>
-        <div class="form-group">
-          <label for="cfgDiscount" id="lblDiscount">折扣</label>
-          <input type="number" id="cfgDiscount" class="tabular" step="0.01" min="0" max="1">
-        </div>
-        <button type="button" class="btn btn-primary" id="btnSaveSettings">儲存設定</button>
-        <div class="save-feedback" id="saveFeedback"></div>
-      </div>
-    </details>
-
     <!-- Records List -->
     <div class="card">
       <div class="records-header">
@@ -569,10 +808,81 @@
     </div>
   </div>
 
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title" id="titleSettings">設定（工號/預算/折扣）</div>
+        <button type="button" class="modal-close-btn" id="btnCloseSettings">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="cfgEmployeeSn" id="lblEmpSn">工號</label>
+          <input type="text" id="cfgEmployeeSn" class="tabular" inputmode="numeric" placeholder="請輸入工號 (e.g. 1220983)">
+        </div>
+        <div class="form-group">
+          <label for="cfgBudget" id="lblDailyBudget">每日預算</label>
+          <input type="number" id="cfgBudget" class="tabular" step="1" min="0">
+        </div>
+        <div class="form-group">
+          <label for="cfgDiscount" id="lblDiscount">折扣</label>
+          <input type="number" id="cfgDiscount" class="tabular" step="0.01" min="0" max="1">
+        </div>
+        <button type="button" class="btn-modal-action" id="btnSaveSettings">儲存設定</button>
+        <div class="save-feedback" id="saveFeedback"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="modal-backdrop" id="shareModal">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title" id="titleShare">分享刷餐小幫手</div>
+        <button type="button" class="modal-close-btn" id="btnCloseShare">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="share-link-box">
+          <span class="share-url-text" id="shareUrlPreview">https://...</span>
+          <button type="button" class="btn-copy" id="btnCopyUrl">複製網址</button>
+        </div>
+
+        <div class="share-buttons-grid">
+          <button type="button" class="btn-share-item" id="btnNativeShare">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span id="txtNativeShare">手機分享</span>
+          </button>
+          <a class="btn-share-item line" id="btnLineShare" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+            </svg>
+            <span>LINE 分享</span>
+          </a>
+        </div>
+
+        <div class="share-tip" id="shareTip">
+          📱 <b>加入主畫面教學：</b><br>
+          • <b>iPhone Safari</b>：點擊下方「分享」按鈕 ➔ 選擇「加入主畫面」<br>
+          • <b>Android Chrome</b>：點擊右上角選單（⋮） ➔ 選擇「加到主畫面」
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">已複製網址到剪貼簿！</div>
+
   <script>
     // i18n Dictionary
     const i18n = {
       zh: {
+        appTitle: "刷餐小幫手",
         remaining: "剩餘預算",
         todayTotal: "當日用餐總額",
         budget: "刷餐預算",
@@ -581,6 +891,7 @@
         refresh: "重新整理",
         settingsSummary: "設定（工號/預算/折扣）",
         empSn: "工號",
+        empSnPlaceholder: "請輸入工號 (e.g. 1220983)",
         dailyBudget: "每日預算",
         discount: "折扣",
         save: "儲存設定",
@@ -592,9 +903,19 @@
         nextDayTag: "隔日",
         itemsCount: (n) => `${n} 筆`,
         unit: "元",
-        beforeDiscount: (S, divShow) => `85折前還可刷：<b>${S}</b> 元 （${divShow} 元）`
+        beforeDiscount: (S, divShow) => `85折前還可刷：<b>${S}</b> 元 （${divShow} 元）`,
+        bannerNotice: "💡 尚未設定工號，請先設定您的員工工號",
+        bannerAction: "前往設定",
+        needWorkerIdPrompt: "請先點擊右上角 ⚙️ 設定工號以查詢用餐紀錄",
+        shareTitle: "分享刷餐小幫手",
+        copyLink: "複製網址",
+        copied: "已複製網址到剪貼簿！",
+        nativeShare: "手機分享",
+        shareText: "Micron 員工刷餐小幫手 - 查刷餐紀錄、算當日剩餘預算",
+        shareTip: "📱 <b>加入主畫面教學：</b><br>• <b>iPhone Safari</b>：點擊下方「分享」按鈕 ➔ 選擇「加入主畫面」<br>• <b>Android Chrome</b>：點擊右上角選單（⋮） ➔ 選擇「加到主畫面」"
       },
       en: {
+        appTitle: "Meal Budget Helper",
         remaining: "Remaining",
         todayTotal: "Today's total",
         budget: "Budget",
@@ -603,6 +924,7 @@
         refresh: "Refresh",
         settingsSummary: "Settings (ID/budget/discount)",
         empSn: "Worker ID",
+        empSnPlaceholder: "Enter ID (e.g. 1220983)",
         dailyBudget: "Daily budget",
         discount: "Discount",
         save: "Save",
@@ -614,13 +936,22 @@
         nextDayTag: "+1d",
         itemsCount: (n) => `${n} item(s)`,
         unit: "NT$",
-        beforeDiscount: (S, divShow) => `Before discount: <b>${S}</b> NT$ (${divShow} NT$)`
+        beforeDiscount: (S, divShow) => `Before discount: <b>${S}</b> NT$ (${divShow} NT$)`,
+        bannerNotice: "💡 Worker ID not set. Please set your ID first",
+        bannerAction: "Set ID",
+        needWorkerIdPrompt: "Please tap ⚙️ Settings above to set your Worker ID",
+        shareTitle: "Share Meal Budget Helper",
+        copyLink: "Copy Link",
+        copied: "URL copied to clipboard!",
+        nativeShare: "Share",
+        shareText: "Meal Budget Helper - Check dining records & remaining budget",
+        shareTip: "📱 <b>Add to Home Screen:</b><br>• <b>iPhone Safari</b>: Tap Share ➔ 'Add to Home Screen'<br>• <b>Android Chrome</b>: Tap menu (⋮) ➔ 'Add to Home Screen'"
       }
     };
 
-    // State
+    // State - Worker ID defaults to BLANK
     const defaultSettings = {
-      employee_sn: "1220983",
+      employee_sn: "",
       budget: 300,
       discount: 0.85
     };
@@ -649,13 +980,17 @@
     }
 
     function loadSettings() {
+      let isConfigured = false;
       try {
         const stored = localStorage.getItem('eatwell_settings');
         if (stored) {
           const parsed = JSON.parse(stored);
-          settings.employee_sn = parsed.employee_sn !== undefined ? String(parsed.employee_sn).trim() : defaultSettings.employee_sn;
+          settings.employee_sn = parsed.employee_sn !== undefined ? String(parsed.employee_sn).trim() : "";
           settings.budget = Number(parsed.budget) || defaultSettings.budget;
           settings.discount = Number(parsed.discount) || defaultSettings.discount;
+          if (settings.employee_sn) {
+            isConfigured = true;
+          }
         }
       } catch (e) {
         settings = { ...defaultSettings };
@@ -664,6 +999,18 @@
       document.getElementById('cfgEmployeeSn').value = settings.employee_sn;
       document.getElementById('cfgBudget').value = settings.budget;
       document.getElementById('cfgDiscount').value = settings.discount;
+
+      checkWorkerIdPrompt(isConfigured);
+      return isConfigured;
+    }
+
+    function checkWorkerIdPrompt(isConfigured) {
+      const banner = document.getElementById('unconfiguredBanner');
+      if (!settings.employee_sn) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
     }
 
     function saveSettings() {
@@ -684,7 +1031,12 @@
 
       const feedback = document.getElementById('saveFeedback');
       feedback.textContent = i18n[currentLang].saved;
-      setTimeout(() => { feedback.textContent = ''; }, 2500);
+      checkWorkerIdPrompt(true);
+
+      setTimeout(() => {
+        feedback.textContent = '';
+        closeModal('settingsModal');
+      }, 700);
 
       fetchDiningRecords();
     }
@@ -692,18 +1044,29 @@
     function updateTexts() {
       const t = i18n[currentLang];
       document.documentElement.lang = currentLang === 'zh' ? 'zh-Hant' : 'en';
+      document.getElementById('brandTitle').textContent = t.appTitle;
       document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'EN' : '中';
       document.getElementById('lblRemaining').textContent = t.remaining;
       document.getElementById('lblTodayTotal').textContent = t.todayTotal;
       document.getElementById('lblBudget').textContent = t.budget;
       document.getElementById('lblRecords').textContent = t.records;
-      document.getElementById('btnToday').textContent = t.today;
-      document.getElementById('btnRefresh').textContent = t.refresh;
-      document.getElementById('summarySettings').textContent = t.settingsSummary;
+      document.getElementById('txtBtnToday').textContent = t.today;
+      document.getElementById('titleSettings').textContent = t.settingsSummary;
       document.getElementById('lblEmpSn').textContent = t.empSn;
+      document.getElementById('cfgEmployeeSn').placeholder = t.empSnPlaceholder;
       document.getElementById('lblDailyBudget').textContent = t.dailyBudget;
       document.getElementById('lblDiscount').textContent = t.discount;
       document.getElementById('btnSaveSettings').textContent = t.save;
+      document.getElementById('txtBannerNotice').textContent = t.bannerNotice;
+      document.getElementById('btnBannerSet').textContent = t.bannerAction;
+      document.getElementById('titleShare').textContent = t.shareTitle;
+      document.getElementById('btnCopyUrl').textContent = t.copyLink;
+      document.getElementById('txtNativeShare').textContent = t.nativeShare;
+      document.getElementById('shareTip').innerHTML = t.shareTip;
+
+      // Update Line share URL
+      const currentUrl = window.location.href;
+      document.getElementById('btnLineShare').href = `https://line.me/R/msg/text/?${encodeURIComponent(t.shareText + '\n' + currentUrl)}`;
     }
 
     function shiftDate(days) {
@@ -723,7 +1086,20 @@
       const t = i18n[currentLang];
       const container = document.getElementById('recordsContainer');
       const countEl = document.getElementById('recordsCount');
+      const refreshBtn = document.getElementById('btnRefresh');
 
+      if (!settings.employee_sn) {
+        container.innerHTML = `
+          <div class="state-box">
+            <div>${t.needWorkerIdPrompt}</div>
+          </div>
+        `;
+        renderStats(0);
+        countEl.textContent = t.itemsCount(0);
+        return;
+      }
+
+      refreshBtn.classList.add('spinning');
       container.innerHTML = `
         <div class="state-box">
           <div class="spinner"></div>
@@ -761,6 +1137,8 @@
         `;
         renderStats(0);
         countEl.textContent = t.itemsCount(0);
+      } finally {
+        setTimeout(() => { refreshBtn.classList.remove('spinning'); }, 300);
       }
     }
 
@@ -901,15 +1279,42 @@
       container.appendChild(list);
     }
 
+    // Modal Helpers
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    // Toast Helper
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2200);
+    }
+
     // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
       initLanguage();
-      loadSettings();
+      const hasConfig = loadSettings();
       updateTexts();
+
+      // Set URL preview for share
+      document.getElementById('shareUrlPreview').textContent = window.location.href;
 
       selectedDate = getBudgetTodayDateString();
       const dateInput = document.getElementById('dateInput');
       dateInput.value = selectedDate;
+
+      // First time without worker ID: auto open settings modal
+      if (!hasConfig) {
+        setTimeout(() => {
+          openModal('settingsModal');
+        }, 300);
+      }
 
       // Lang toggle
       document.getElementById('langBtn').addEventListener('click', () => {
@@ -917,6 +1322,62 @@
         localStorage.setItem('eatwell_lang', currentLang);
         updateTexts();
         fetchDiningRecords();
+      });
+
+      // Settings modal triggers
+      document.getElementById('settingsBtn').addEventListener('click', () => openModal('settingsModal'));
+      document.getElementById('btnBannerSet').addEventListener('click', () => openModal('settingsModal'));
+      document.getElementById('btnCloseSettings').addEventListener('click', () => closeModal('settingsModal'));
+      document.getElementById('settingsModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('settingsModal')) closeModal('settingsModal');
+      });
+
+      // Share modal triggers
+      document.getElementById('shareBtn').addEventListener('click', () => {
+        document.getElementById('shareUrlPreview').textContent = window.location.href;
+        openModal('shareModal');
+      });
+      document.getElementById('btnCloseShare').addEventListener('click', () => closeModal('shareModal'));
+      document.getElementById('shareModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('shareModal')) closeModal('shareModal');
+      });
+
+      // Copy URL button
+      document.getElementById('btnCopyUrl').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast(i18n[currentLang].copied);
+        } catch (err) {
+          const inp = document.createElement('input');
+          inp.value = window.location.href;
+          document.body.appendChild(inp);
+          inp.select();
+          document.execCommand('copy');
+          document.body.removeChild(inp);
+          showToast(i18n[currentLang].copied);
+        }
+      });
+
+      // Native Share API
+      document.getElementById('btnNativeShare').addEventListener('click', async () => {
+        const t = i18n[currentLang];
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: t.appTitle,
+              text: t.shareText,
+              url: window.location.href
+            });
+          } catch (e) {
+            // User cancelled or ignored
+          }
+        } else {
+          // Fallback to copy
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            showToast(t.copied);
+          } catch (e) {}
+        }
       });
 
       // Date input changes
@@ -931,14 +1392,14 @@
       document.getElementById('btnPrevDay').addEventListener('click', () => shiftDate(-1));
       document.getElementById('btnNextDay').addEventListener('click', () => shiftDate(1));
 
-      // Today button
+      // Today button (Left of date row)
       document.getElementById('btnToday').addEventListener('click', () => {
         selectedDate = getBudgetTodayDateString();
         dateInput.value = selectedDate;
         fetchDiningRecords();
       });
 
-      // Refresh button
+      // Refresh button (Inside Hero Card)
       document.getElementById('btnRefresh').addEventListener('click', () => {
         fetchDiningRecords();
       });
