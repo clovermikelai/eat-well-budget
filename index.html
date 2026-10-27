@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Claude Eat Well</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="theme-color" content="#0f1115">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Eat Well">
+
+  <!-- Embedded SVG Icon & Apple Touch Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231f7ae0'/%3E%3Ctext x='256' y='335' fill='%23ffffff' font-size='270' font-weight='bold' font-family='PingFang TC,Microsoft JhengHei,Noto Sans TC,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231f7ae0'/%3E%3Ctext x='256' y='335' fill='%23ffffff' font-size='270' font-weight='bold' font-family='PingFang TC,Microsoft JhengHei,Noto Sans TC,sans-serif' text-anchor='middle'%3E餐%3C/text%3E%3C/svg%3E">
+
+  <!-- Embedded PWA Manifest -->
+  <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22Claude%20Eat%20Well%22%2C%22short_name%22%3A%22Eat%20Well%22%2C%22start_url%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22theme_color%22%3A%22%230f1115%22%2C%22background_color%22%3A%22%230f1115%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27112%27%20fill%3D%27%25231f7ae0%27%2F%253E%253Ctext%20x%3D%27256%27%20y%3D%27335%27%20fill%3D%27%2523ffffff%27%20font-size%3D%27270%27%20font-weight%3D%27bold%27%20font-family%3D%27PingFang%20TC%2CMicrosoft%20JhengHei%2CNoto%20Sans%20TC%2Csans-serif%27%20text-anchor%3D%27middle%27%253E%25E9%25A4%2590%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --card-sub: #f0f3f8;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --primary: #1f7ae0;
+      --primary-hover: #1664be;
+      --green: #10b981;
+      --red: #ef4444;
+      --badge-bg: #fee2e2;
+      --badge-text: #dc2626;
+      --progress-bg: #e2e8f0;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115;
+        --card-bg: #181b21;
+        --card-sub: #21252d;
+        --border: #2a2e38;
+        --text: #f1f5f9;
+        --text-muted: #94a3b8;
+        --primary: #3b82f6;
+        --primary-hover: #2563eb;
+        --green: #22c55e;
+        --red: #f87171;
+        --badge-bg: #451a1a;
+        --badge-text: #fca5a5;
+        --progress-bg: #2a2e38;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 16px 36px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0 8px 0;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      background-color: var(--primary);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .btn-lang {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 38px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Main Budget Card */
+    .hero-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .hero-amount {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-amount.positive {
+      color: var(--green);
+    }
+
+    .hero-amount.negative {
+      color: var(--red);
+    }
+
+    .discount-calc-line {
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--card-sub);
+      padding: 8px 12px;
+      border-radius: 12px;
+      word-break: break-word;
+    }
+
+    .discount-calc-line b {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .sub-cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .sub-card {
+      background: var(--card-sub);
+      padding: 12px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .sub-card-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .sub-card-val {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--progress-bg);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.4s ease, background-color 0.3s;
+      border-radius: 6px;
+    }
+
+    .progress-bar-fill.exceeded {
+      background: var(--red);
+    }
+
+    /* Date controls */
+    .date-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .date-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .date-row button {
+      flex: 0 0 46px;
+      height: 44px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .date-input-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .date-picker {
+      width: 100%;
+      height: 44px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 0 10px;
+      font-family: inherit;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn {
+      height: 44px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: opacity 0.2s, background-color 0.2s;
+    }
+
+    .btn:active {
+      opacity: 0.7;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Collapsible Settings */
+    details.settings-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    details.settings-box summary {
+      padding: 14px 16px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: var(--text);
+      user-select: none;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    details.settings-box summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.settings-box summary::after {
+      content: "▾";
+      font-size: 1rem;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+
+    details[open].settings-box summary::after {
+      transform: rotate(180deg);
+    }
+
+    .settings-content {
+      padding: 0 16px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-group input {
+      height: 42px;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      padding: 0 12px;
+      font-family: inherit;
+    }
+
+    .save-feedback {
+      text-align: center;
+      color: var(--green);
+      font-size: 0.88rem;
+      font-weight: 600;
+      height: 20px;
+    }
+
+    /* Detail Records */
+    .records-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .records-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .records-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .records-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .record-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card-sub);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+    }
+
+    .record-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .record-time-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .record-time {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .record-tag {
+      font-size: 0.7rem;
+      padding: 1px 5px;
+      border-radius: 6px;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .record-shop {
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .record-amount {
+      font-weight: 700;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+
+    /* States */
+    .state-box {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-text {
+      color: var(--red);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header>
+      <div class="brand-title">
+        <div class="brand-icon">餐</div>
+        <span>Claude Eat Well</span>
+      </div>
+      <button class="btn-lang" id="langBtn" type="button">中 / EN</button>
+    </header>
+
+    <!-- Main Remaining Budget Card -->
+    <div class="card hero-card">
+      <div class="hero-label" id="lblRemaining">剩餘預算</div>
+      <div class="hero-amount tabular positive" id="valRemaining">0</div>
+      <div class="discount-calc-line" id="valDiscountLine">--</div>
+
+      <div class="sub-cards-row">
+        <div class="sub-card">
+          <div class="sub-card-label" id="lblTodayTotal">當日用餐總額</div>
+          <div class="sub-card-val tabular" id="valTodayTotal">0</div>
+        </div>
+        <div class="sub-card">
+          <div class="sub-card-label" id="lblBudget">刷餐預算</div>
+          <div class="sub-card-val tabular" id="valBudget">300</div>
+        </div>
+      </div>
+
+      <div class="progress-bar-container" title="Usage Progress">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- Date Control -->
+    <div class="date-section">
+      <div class="date-row">
+        <button type="button" id="btnPrevDay" aria-label="Previous day">‹</button>
+        <div class="date-input-wrapper">
+          <input type="date" id="dateInput" class="date-picker tabular">
+        </div>
+        <button type="button" id="btnNextDay" aria-label="Next day">›</button>
+      </div>
+      <div class="action-row">
+        <button type="button" class="btn" id="btnToday">回到今天</button>
+        <button type="button" class="btn" id="btnRefresh">重新整理</button>
+      </div>
+    </div>
+
+    <!-- Collapsible Settings -->
+    <details class="settings-box" id="settingsDetails">
+      <summary id="summarySettings">設定（工號/預算/折扣）</summary>
+      <div class="settings-content">
+        <div class="form-group">
+          <label for="cfgEmployeeSn" id="lblEmpSn">工號</label>
+          <input type="text" id="cfgEmployeeSn" class="tabular" inputmode="numeric">
+        </div>
+        <div class="form-group">
+          <label for="cfgBudget" id="lblDailyBudget">每日預算</label>
+          <input type="number" id="cfgBudget" class="tabular" step="1" min="0">
+        </div>
+        <div class="form-group">
+          <label for="cfgDiscount" id="lblDiscount">折扣</label>
+          <input type="number" id="cfgDiscount" class="tabular" step="0.01" min="0" max="1">
+        </div>
+        <button type="button" class="btn btn-primary" id="btnSaveSettings">儲存設定</button>
+        <div class="save-feedback" id="saveFeedback"></div>
+      </div>
+    </details>
+
+    <!-- Records List -->
+    <div class="card">
+      <div class="records-header">
+        <div class="records-title" id="lblRecords">用餐明細</div>
+        <div class="records-count tabular" id="recordsCount">0 筆</div>
+      </div>
+      <div id="recordsContainer">
+        <!-- Records or State will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // i18n Dictionary
+    const i18n = {
+      zh: {
+        remaining: "剩餘預算",
+        todayTotal: "當日用餐總額",
+        budget: "刷餐預算",
+        records: "用餐明細",
+        today: "回到今天",
+        refresh: "重新整理",
+        settingsSummary: "設定（工號/預算/折扣）",
+        empSn: "工號",
+        dailyBudget: "每日預算",
+        discount: "折扣",
+        save: "儲存設定",
+        saved: "已儲存 ✓",
+        loading: "載入中...",
+        loadFailed: "載入失敗：",
+        noRecords: "這天沒有用餐紀錄",
+        budgetUsedUp: "今日預算已用完",
+        nextDayTag: "隔日",
+        itemsCount: (n) => `${n} 筆`,
+        unit: "元",
+        beforeDiscount: (S, divShow) => `85折前還可刷：<b>${S}</b> 元 （${divShow} 元）`
+      },
+      en: {
+        remaining: "Remaining",
+        todayTotal: "Today's total",
+        budget: "Budget",
+        records: "Records",
+        today: "Today",
+        refresh: "Refresh",
+        settingsSummary: "Settings (ID/budget/discount)",
+        empSn: "Worker ID",
+        dailyBudget: "Daily budget",
+        discount: "Discount",
+        save: "Save",
+        saved: "Saved ✓",
+        loading: "Loading...",
+        loadFailed: "Load failed: ",
+        noRecords: "No records this day",
+        budgetUsedUp: "Budget used up",
+        nextDayTag: "+1d",
+        itemsCount: (n) => `${n} item(s)`,
+        unit: "NT$",
+        beforeDiscount: (S, divShow) => `Before discount: <b>${S}</b> NT$ (${divShow} NT$)`
+      }
+    };
+
+    // State
+    const defaultSettings = {
+      employee_sn: "1220983",
+      budget: 300,
+      discount: 0.85
+    };
+
+    let settings = { ...defaultSettings };
+    let currentLang = 'zh';
+    let selectedDate = '';
+
+    // Calculate Micron Budget Day Date String (04:00 AM turnover)
+    function getBudgetTodayDateString() {
+      const budgetNow = new Date(Date.now() - 4 * 3600 * 1000);
+      const y = budgetNow.getFullYear();
+      const m = String(budgetNow.getMonth() + 1).padStart(2, '0');
+      const d = String(budgetNow.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    function initLanguage() {
+      const savedLang = localStorage.getItem('eatwell_lang');
+      if (savedLang && (savedLang === 'zh' || savedLang === 'en')) {
+        currentLang = savedLang;
+      } else {
+        const navLang = navigator.language || navigator.userLanguage || '';
+        currentLang = navLang.toLowerCase().startsWith('zh') ? 'zh' : 'en';
+      }
+    }
+
+    function loadSettings() {
+      try {
+        const stored = localStorage.getItem('eatwell_settings');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          settings.employee_sn = parsed.employee_sn !== undefined ? String(parsed.employee_sn).trim() : defaultSettings.employee_sn;
+          settings.budget = Number(parsed.budget) || defaultSettings.budget;
+          settings.discount = Number(parsed.discount) || defaultSettings.discount;
+        }
+      } catch (e) {
+        settings = { ...defaultSettings };
+      }
+
+      document.getElementById('cfgEmployeeSn').value = settings.employee_sn;
+      document.getElementById('cfgBudget').value = settings.budget;
+      document.getElementById('cfgDiscount').value = settings.discount;
+    }
+
+    function saveSettings() {
+      const sn = document.getElementById('cfgEmployeeSn').value.trim();
+      const bg = Number(document.getElementById('cfgBudget').value);
+      const dc = Number(document.getElementById('cfgDiscount').value);
+
+      if (!sn) {
+        alert(currentLang === 'zh' ? '請輸入工號' : 'Please enter Worker ID');
+        return;
+      }
+
+      settings.employee_sn = sn;
+      settings.budget = isNaN(bg) ? 300 : bg;
+      settings.discount = (isNaN(dc) || dc <= 0) ? 0.85 : dc;
+
+      localStorage.setItem('eatwell_settings', JSON.stringify(settings));
+
+      const feedback = document.getElementById('saveFeedback');
+      feedback.textContent = i18n[currentLang].saved;
+      setTimeout(() => { feedback.textContent = ''; }, 2500);
+
+      fetchDiningRecords();
+    }
+
+    function updateTexts() {
+      const t = i18n[currentLang];
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-Hant' : 'en';
+      document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'EN' : '中';
+      document.getElementById('lblRemaining').textContent = t.remaining;
+      document.getElementById('lblTodayTotal').textContent = t.todayTotal;
+      document.getElementById('lblBudget').textContent = t.budget;
+      document.getElementById('lblRecords').textContent = t.records;
+      document.getElementById('btnToday').textContent = t.today;
+      document.getElementById('btnRefresh').textContent = t.refresh;
+      document.getElementById('summarySettings').textContent = t.settingsSummary;
+      document.getElementById('lblEmpSn').textContent = t.empSn;
+      document.getElementById('lblDailyBudget').textContent = t.dailyBudget;
+      document.getElementById('lblDiscount').textContent = t.discount;
+      document.getElementById('btnSaveSettings').textContent = t.save;
+    }
+
+    function shiftDate(days) {
+      if (!selectedDate) return;
+      const parts = selectedDate.split('-');
+      const d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      d.setDate(d.getDate() + days);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const date = String(d.getDate()).padStart(2, '0');
+      selectedDate = `${y}-${m}-${date}`;
+      document.getElementById('dateInput').value = selectedDate;
+      fetchDiningRecords();
+    }
+
+    async function fetchDiningRecords() {
+      const t = i18n[currentLang];
+      const container = document.getElementById('recordsContainer');
+      const countEl = document.getElementById('recordsCount');
+
+      container.innerHTML = `
+        <div class="state-box">
+          <div class="spinner"></div>
+          <div>${t.loading}</div>
+        </div>
+      `;
+
+      const params = new URLSearchParams();
+      params.append('start_date', selectedDate);
+      params.append('end_date', selectedDate);
+      params.append('employee_sn', settings.employee_sn);
+
+      try {
+        const resp = await fetch('https://pos-api-micron.dudooeat.com/reports/employeesDiningRecords', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: params.toString(),
+          credentials: 'omit'
+        });
+
+        if (!resp.ok) {
+          throw new Error(`HTTP ${resp.status}`);
+        }
+
+        const resData = await resp.json();
+        const records = (resData && resData.data && Array.isArray(resData.data.records)) ? resData.data.records : [];
+        renderRecords(records);
+      } catch (err) {
+        container.innerHTML = `
+          <div class="state-box error-text">
+            <div>${t.loadFailed}${err.message || err}</div>
+          </div>
+        `;
+        renderStats(0);
+        countEl.textContent = t.itemsCount(0);
+      }
+    }
+
+    function renderStats(totalSpent) {
+      const t = i18n[currentLang];
+      const budget = settings.budget;
+      const remain = budget - totalSpent;
+      const discount = settings.discount;
+
+      const valRemaining = document.getElementById('valRemaining');
+      valRemaining.textContent = `${remain} ${t.unit}`;
+      if (remain >= 0) {
+        valRemaining.className = 'hero-amount tabular positive';
+      } else {
+        valRemaining.className = 'hero-amount tabular negative';
+      }
+
+      document.getElementById('valTodayTotal').textContent = `${totalSpent} ${t.unit}`;
+      document.getElementById('valBudget').textContent = `${budget} ${t.unit}`;
+
+      // Discount calculation formula required by prompt
+      const valDiscountLine = document.getElementById('valDiscountLine');
+      if (remain <= 0) {
+        valDiscountLine.textContent = t.budgetUsedUp;
+      } else {
+        const d = discount;
+        const divShow = Math.round((remain / d) * 10) / 10;
+        const charge = S => Math.floor(S * d + 0.4 + 1e-9);
+        let S = Math.ceil(remain / d) + 2;
+        while (S > 0 && charge(S) > remain) S--;
+
+        valDiscountLine.innerHTML = t.beforeDiscount(S, divShow);
+      }
+
+      // Progress bar
+      const bar = document.getElementById('progressBar');
+      const pct = budget > 0 ? (totalSpent / budget) * 100 : 0;
+      bar.style.width = `${Math.min(pct, 100)}%`;
+      if (pct > 100) {
+        bar.classList.add('exceeded');
+      } else {
+        bar.classList.remove('exceeded');
+      }
+    }
+
+    function renderRecords(records) {
+      const t = i18n[currentLang];
+      const container = document.getElementById('recordsContainer');
+      const countEl = document.getElementById('recordsCount');
+
+      // Sort by meal_time ascending
+      records.sort((a, b) => {
+        const ta = a.meal_time || '';
+        const tb = b.meal_time || '';
+        return ta.localeCompare(tb);
+      });
+
+      let totalSpent = 0;
+      records.forEach(r => {
+        totalSpent += (Number(r.amount) || 0);
+      });
+
+      renderStats(totalSpent);
+      countEl.textContent = t.itemsCount(records.length);
+
+      if (records.length === 0) {
+        container.innerHTML = `
+          <div class="state-box">
+            <div>${t.noRecords}</div>
+          </div>
+        `;
+        return;
+      }
+
+      const list = document.createElement('div');
+      list.className = 'records-list';
+
+      records.forEach(r => {
+        const row = document.createElement('div');
+        row.className = 'record-item';
+
+        // Extract HH:mm and check if before 04:00 (next day tag)
+        let timeStr = '--:--';
+        let isNextDay = false;
+        if (r.meal_time) {
+          const parts = r.meal_time.split(' ');
+          if (parts[1]) {
+            const timeSplits = parts[1].split(':');
+            const hour = parseInt(timeSplits[0], 10);
+            timeStr = `${parts[1].substring(0, 5)}`;
+            if (!isNaN(hour) && hour < 4) {
+              isNextDay = true;
+            }
+          }
+        }
+
+        // Shop name extraction: dining_at first underscore substring
+        const diningAt = r.dining_at || '';
+        const underscoreIndex = diningAt.indexOf('_');
+        const shopName = underscoreIndex >= 0 ? diningAt.substring(underscoreIndex + 1) : diningAt;
+
+        const left = document.createElement('div');
+        left.className = 'record-left';
+
+        const timeBox = document.createElement('div');
+        timeBox.className = 'record-time-box tabular';
+
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'record-time';
+        timeSpan.textContent = timeStr;
+        timeBox.appendChild(timeSpan);
+
+        if (isNextDay) {
+          const tag = document.createElement('span');
+          tag.className = 'record-tag';
+          tag.textContent = t.nextDayTag;
+          timeBox.appendChild(tag);
+        }
+
+        const shopSpan = document.createElement('span');
+        shopSpan.className = 'record-shop';
+        shopSpan.textContent = shopName || '—';
+        shopSpan.title = shopName;
+
+        left.appendChild(timeBox);
+        left.appendChild(shopSpan);
+
+        const amountSpan = document.createElement('div');
+        amountSpan.className = 'record-amount tabular';
+        amountSpan.textContent = `${Number(r.amount) || 0} ${t.unit}`;
+
+        row.appendChild(left);
+        row.appendChild(amountSpan);
+        list.appendChild(row);
+      });
+
+      container.innerHTML = '';
+      container.appendChild(list);
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      initLanguage();
+      loadSettings();
+      updateTexts();
+
+      selectedDate = getBudgetTodayDateString();
+      const dateInput = document.getElementById('dateInput');
+      dateInput.value = selectedDate;
+
+      // Lang toggle
+      document.getElementById('langBtn').addEventListener('click', () => {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        localStorage.setItem('eatwell_lang', currentLang);
+        updateTexts();
+        fetchDiningRecords();
+      });
+
+      // Date input changes
+      dateInput.addEventListener('change', (e) => {
+        if (e.target.value) {
+          selectedDate = e.target.value;
+          fetchDiningRecords();
+        }
+      });
+
+      // Prev / Next day
+      document.getElementById('btnPrevDay').addEventListener('click', () => shiftDate(-1));
+      document.getElementById('btnNextDay').addEventListener('click', () => shiftDate(1));
+
+      // Today button
+      document.getElementById('btnToday').addEventListener('click', () => {
+        selectedDate = getBudgetTodayDateString();
+        dateInput.value = selectedDate;
+        fetchDiningRecords();
+      });
+
+      // Refresh button
+      document.getElementById('btnRefresh').addEventListener('click', () => {
+        fetchDiningRecords();
+      });
+
+      // Save settings
+      document.getElementById('btnSaveSettings').addEventListener('click', saveSettings);
+
+      // Initial Fetch
+      fetchDiningRecords();
+    });
+  </script>
+</body>
+</html>
