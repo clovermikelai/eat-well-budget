@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-  <meta name="app-version" content="1.3.0">
+  <meta name="app-version" content="1.3.1">
   <title>刷餐小幫手 - Meal Budget Helper</title>
   
   <!-- Adaptive Status Bar for Dynamic Island & Notch -->
@@ -1119,7 +1119,7 @@
         <div class="version-section">
           <div class="version-info-row">
             <span id="lblAppVer">程式版本</span>
-            <span class="version-tag tabular" id="curVerTag">v1.3.0</span>
+            <span class="version-tag tabular" id="curVerTag">v1.3.1</span>
           </div>
           <div class="version-actions-row">
             <button type="button" class="btn-ver-action" id="btnCheckUpdate">
@@ -1182,7 +1182,7 @@
 
   <script>
     // App Version
-    const APP_VERSION = "1.3.0";
+    const APP_VERSION = "1.3.1";
 
     // i18n Dictionary
     const i18n = {
@@ -1393,8 +1393,8 @@
       document.getElementById('btnApplyUpdate').textContent = t.updateNow;
 
       // Update Line share URL
-      const currentUrl = window.location.href;
-      document.getElementById('btnLineShare').href = `https://line.me/R/msg/text/?${encodeURIComponent(t.shareText + '\n' + currentUrl)}`;
+      const cleanUrl = getCleanShareUrl();
+      document.getElementById('btnLineShare').href = `https://line.me/R/msg/text/?${encodeURIComponent(t.shareText + '\n' + cleanUrl)}`;
     }
 
     // Update Centered Date Display text
@@ -1669,6 +1669,11 @@
       }
     }
 
+    // Helper to get clean canonical share URL without query params (such as cache-busting ?_v=...)
+    function getCleanShareUrl() {
+      return window.location.origin + window.location.pathname;
+    }
+
     // Force Standalone WebKit Cache Busting
     function applyAppUpdate() {
       const t = i18n[currentLang];
@@ -1682,12 +1687,19 @@
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', () => {
+      // Silently clean cache-busting or other query params from address bar without reloading
+      if (window.location.search) {
+        try {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        } catch (e) {}
+      }
+
       initLanguage();
       const hasConfig = loadSettings();
       updateTexts();
 
       // Set URL preview for share
-      document.getElementById('shareUrlPreview').textContent = window.location.href;
+      document.getElementById('shareUrlPreview').textContent = getCleanShareUrl();
 
       selectedDate = getBudgetTodayDateString();
       const dateInput = document.getElementById('dateInput');
@@ -1752,7 +1764,7 @@
 
       // Share modal triggers
       document.getElementById('shareBtn').addEventListener('click', () => {
-        document.getElementById('shareUrlPreview').textContent = window.location.href;
+        document.getElementById('shareUrlPreview').textContent = getCleanShareUrl();
         openModal('shareModal');
       });
       document.getElementById('btnCloseShare').addEventListener('click', () => closeModal('shareModal'));
@@ -1762,12 +1774,13 @@
 
       // Copy URL button
       document.getElementById('btnCopyUrl').addEventListener('click', async () => {
+        const cleanUrl = getCleanShareUrl();
         try {
-          await navigator.clipboard.writeText(window.location.href);
+          await navigator.clipboard.writeText(cleanUrl);
           showToast(i18n[currentLang].copied);
         } catch (err) {
           const inp = document.createElement('input');
-          inp.value = window.location.href;
+          inp.value = cleanUrl;
           document.body.appendChild(inp);
           inp.select();
           document.execCommand('copy');
@@ -1779,12 +1792,13 @@
       // Native Share API
       document.getElementById('btnNativeShare').addEventListener('click', async () => {
         const t = i18n[currentLang];
+        const cleanUrl = getCleanShareUrl();
         if (navigator.share) {
           try {
             await navigator.share({
               title: t.appTitle,
               text: t.shareText,
-              url: window.location.href
+              url: cleanUrl
             });
           } catch (e) {
             // User cancelled or ignored
@@ -1792,7 +1806,7 @@
         } else {
           // Fallback to copy
           try {
-            await navigator.clipboard.writeText(window.location.href);
+            await navigator.clipboard.writeText(cleanUrl);
             showToast(t.copied);
           } catch (e) {}
         }
