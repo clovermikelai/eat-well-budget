@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-  <meta name="app-version" content="1.3.3">
+  <meta name="app-version" content="1.3.4">
   <title>刷餐小幫手 - Meal Budget Helper</title>
   
   <!-- Adaptive Status Bar for Dynamic Island & Notch -->
@@ -1119,7 +1119,7 @@
         <div class="version-section">
           <div class="version-info-row">
             <span id="lblAppVer">程式版本</span>
-            <span class="version-tag tabular" id="curVerTag">v1.3.3</span>
+            <span class="version-tag tabular" id="curVerTag">v1.3.4</span>
           </div>
           <div class="version-actions-row">
             <button type="button" class="btn-ver-action" id="btnCheckUpdate">
@@ -1182,7 +1182,7 @@
 
   <script>
     // App Version
-    const APP_VERSION = "1.3.3";
+    const APP_VERSION = "1.3.4";
 
     // i18n Dictionary
     const i18n = {
@@ -1204,6 +1204,8 @@
         loading: "載入中...",
         loadFailed: "載入失敗：",
         noRecords: "這天沒有用餐紀錄",
+        dataErrorNotice: "⚠️ 資料連線異常，無法取得紀錄",
+        unknownStatus: "連線異常",
         budgetUsedUp: "今日預算已用完",
         nextDayTag: "隔日",
         itemsCount: (n) => `${n} 筆`,
@@ -1245,6 +1247,8 @@
         loading: "Loading...",
         loadFailed: "Load failed: ",
         noRecords: "No records this day",
+        dataErrorNotice: "⚠️ Connection error, unable to fetch records",
+        unknownStatus: "Error",
         budgetUsedUp: "Budget used up",
         nextDayTag: "+1d",
         itemsCount: (n) => `${n} item(s)`,
@@ -1474,37 +1478,64 @@
           } catch (e) {}
         }
 
-        // Support both new schema (data: [...]) and legacy schema (data: { records: [...] })
+        // Validate success response and data payload
         let records = [];
-        if (resData && resData.data) {
-          if (Array.isArray(resData.data)) {
-            records = resData.data;
-          } else if (Array.isArray(resData.data.records)) {
-            records = resData.data.records;
+        let isFetchValid = false;
+
+        if (resData && typeof resData === 'object') {
+          if (resData.success === true && resData.data !== undefined) {
+            isFetchValid = true;
+            if (Array.isArray(resData.data)) {
+              records = resData.data;
+            } else if (resData.data && Array.isArray(resData.data.records)) {
+              records = resData.data.records;
+            }
           }
         }
 
-        renderRecords(records);
+        if (isFetchValid) {
+          renderRecords(records);
+        } else {
+          // Server returned unknown / error structure
+          throw new Error(typeof resData === 'string' ? resData : 'Invalid data format');
+        }
       } catch (err) {
         container.innerHTML = `
           <div class="state-box error-text">
             <div>${t.loadFailed}${err.message || err}</div>
           </div>
         `;
-        renderStats(0);
+        renderStats(null, false);
         countEl.textContent = t.itemsCount(0);
       } finally {
         setTimeout(() => { refreshBtn.classList.remove('spinning'); }, 300);
       }
     }
 
-    function renderStats(totalSpent) {
+    function renderStats(totalSpent, isSuccess = true) {
       const t = i18n[currentLang];
       const budget = settings.budget;
+      const valRemaining = document.getElementById('valRemaining');
+      const valTodayTotal = document.getElementById('valTodayTotal');
+      const valBudget = document.getElementById('valBudget');
+      const valDiscountLine = document.getElementById('valDiscountLine');
+      const bar = document.getElementById('progressBar');
+
+      if (!isSuccess || totalSpent === null) {
+        // Disconnected or fetch failed: Clear values and clearly warn user
+        valRemaining.textContent = '--';
+        valRemaining.className = 'hero-amount tabular negative';
+        valTodayTotal.textContent = '--';
+        valBudget.textContent = `${budget} ${t.unit}`;
+        valDiscountLine.innerHTML = `<span style="color:var(--red);">${t.dataErrorNotice}</span>`;
+        bar.style.width = '0%';
+        bar.classList.remove('exceeded');
+        return;
+      }
+
       const remain = budget - totalSpent;
       const discount = settings.discount;
 
-      const valRemaining = document.getElementById('valRemaining');
       valRemaining.textContent = `${remain} ${t.unit}`;
       if (remain >= 0) {
         valRemaining.className = 'hero-amount tabular positive';
@@ -1512,11 +1543,10 @@
         valRemaining.className = 'hero-amount tabular negative';
       }
 
-      document.getElementById('valTodayTotal').textContent = `${totalSpent} ${t.unit}`;
-      document.getElementById('valBudget').textContent = `${budget} ${t.unit}`;
+      valTodayTotal.textContent = `${totalSpent} ${t.unit}`;
+      valBudget.textContent = `${budget} ${t.unit}`;
 
       // Discount calculation formula (POS deduction: Original Price minus rounded 15% discount)
-      const valDiscountLine = document.getElementById('valDiscountLine');
       if (remain <= 0) {
         valDiscountLine.textContent = t.budgetUsedUp;
       } else {
@@ -1530,7 +1560,6 @@
       }
 
       // Progress bar
-      const bar = document.getElementById('progressBar');
       const pct = budget > 0 ? (totalSpent / budget) * 100 : 0;
       bar.style.width = `${Math.min(pct, 100)}%`;
       if (pct > 100) {
